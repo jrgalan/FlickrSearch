@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rgJ-C5-QiL">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photos Main Table View Controller-->
+        <scene sceneID="xWN-g3-Atw">
+            <objects>
+                <tableViewController id="wdb-Yd-yoc" customClass="PhotosMainTableViewController" customModule="FlickrSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Bs-rS-wyZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PhotoCell" rowHeight="100" id="HHu-r2-ryQ" customClass="PhotoTableViewCell" customModule="FlickrSearch" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HHu-r2-ryQ" id="NPh-hD-yK9">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Gj2-Lh-xQ4">
+                                            <rect key="frame" x="16" y="12" width="75" height="75"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="Gj2-Lh-xQ4" secondAttribute="height" multiplier="1:1" id="UJR-me-PyX"/>
+                                                <constraint firstAttribute="width" constant="75" id="WRB-Pz-bI4"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwK-gc-tnv">
+                                            <rect key="frame" x="111" y="39.5" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SwK-gc-tnv" firstAttribute="leading" secondItem="Gj2-Lh-xQ4" secondAttribute="trailing" constant="20" id="4BD-rt-8hg"/>
+                                        <constraint firstItem="Gj2-Lh-xQ4" firstAttribute="leading" secondItem="NPh-hD-yK9" secondAttribute="leading" constant="16" id="8oE-6H-sey"/>
+                                        <constraint firstItem="Gj2-Lh-xQ4" firstAttribute="top" secondItem="NPh-hD-yK9" secondAttribute="top" constant="12" id="NMs-oV-n9z"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SwK-gc-tnv" secondAttribute="trailing" constant="20" id="eXc-zN-AeY"/>
+                                        <constraint firstItem="SwK-gc-tnv" firstAttribute="centerY" secondItem="NPh-hD-yK9" secondAttribute="centerY" id="ofg-AO-Fv0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="photoThumbnailImageView" destination="Gj2-Lh-xQ4" id="OjP-KD-OQg"/>
+                                    <outlet property="photoTitleLabel" destination="SwK-gc-tnv" id="fuO-Ul-nc0"/>
+                                    <segue destination="bPf-BY-ugu" kind="show" identifier="PhotoDetailSegue" id="CrE-pb-Fw1"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" textLabel="Q7w-Pa-tK5" style="IBUITableViewCellStyleDefault" id="qgE-oH-W5b">
+                                <rect key="frame" x="0.0" y="128" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qgE-oH-W5b" id="xcA-q0-jbW">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q7w-Pa-tK5">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="99.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="wdb-Yd-yoc" id="xLi-oU-KfO"/>
+                            <outlet property="delegate" destination="wdb-Yd-yoc" id="Jp8-DS-GgU"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ogm-uf-6y2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TIF-SH-8NX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="842.39999999999998" y="158.77061469265368"/>
+        </scene>
+        <!--Photo Detail View Controller-->
+        <scene sceneID="3Qa-ab-InL">
+            <objects>
+                <viewController id="bPf-BY-ugu" customClass="PhotoDetailViewController" customModule="FlickrSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hna-Lp-kL5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QhX-JM-ltJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QhX-JM-ltJ" firstAttribute="top" secondItem="StW-Dp-vlq" secondAttribute="top" id="0tq-ug-NoA"/>
+                            <constraint firstItem="StW-Dp-vlq" firstAttribute="bottom" secondItem="QhX-JM-ltJ" secondAttribute="bottom" id="PED-K6-aVi"/>
+                            <constraint firstItem="QhX-JM-ltJ" firstAttribute="leading" secondItem="StW-Dp-vlq" secondAttribute="leading" id="V2Y-rn-jPi"/>
+                            <constraint firstItem="StW-Dp-vlq" firstAttribute="trailing" secondItem="QhX-JM-ltJ" secondAttribute="trailing" id="woo-To-liH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="StW-Dp-vlq"/>
+                    </view>
+                    <connections>
+                        <outlet property="mainImageView" destination="QhX-JM-ltJ" id="fhY-is-4ey"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T24-vk-Emr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1588" y="159"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tI3-jS-ygq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rgJ-C5-QiL" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="asQ-Pl-Uee">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wdb-Yd-yoc" kind="relationship" relationship="rootViewController" id="0sQ-bW-Inc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kLZ-za-59t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="60" y="159"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+</document>
