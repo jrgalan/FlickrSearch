@@ -11,16 +11,15 @@ import Foundation
 class PhotosViewModel {
     
     private let flickrAPIManager: FlickrAPIManager
-    private var photos: Photos?
-    private var photoData: [Photo]?
+    private var pagedArray: PagedArray<Photo>?
     private var isLoading = false
-    private var currentPage = 1
+    private let startingPage = 1
     private let nextPageThreshold = 5
     private let recentSearchesKey = "recentSearches"
     
     var numberOfPhotos: Int {
-        if let safePhotoData = photoData {
-            return safePhotoData.count
+        if let pagedArray = self.pagedArray {
+            return pagedArray.count
         } else {
             return 0
         }
@@ -37,8 +36,8 @@ class PhotosViewModel {
     }
     
     func photo(for index: Int) -> Photo? {
-        if let safePhotoData = photoData, safePhotoData.count > index {
-            return safePhotoData[index]
+        if let pagedArray = self.pagedArray {
+            return pagedArray[index]
         } else {
             return nil
         }
@@ -55,16 +54,16 @@ class PhotosViewModel {
     
     func performSearch(searchTerm: String, completion: @escaping (Bool) -> Void) {
         if searchTerm.count > 0 {
-            currentPage = 1
+            clearCurrentPhotos()
             addRecentSearch(searchTerm: searchTerm)
-            performFlickrSearch(searchTerm: searchTerm, page: currentPage) { success in
+            performFlickrSearch(searchTerm: searchTerm, page: startingPage) { success in
                 completion(success)
             }
         }
     }
     
     func shouldFetchNextPage(for index: Int, searchTerm: String, completion: @escaping (Bool) -> Void) {
-        if !isLoading, let safePhotoData = photoData, safePhotoData.count - nextPageThreshold < index {
+        if !isLoading, let pagedArray = self.pagedArray, pagedArray.count - nextPageThreshold < index {
             fetchNextPage(searchTerm: searchTerm) { success in
                 completion(success)
             }
@@ -72,8 +71,7 @@ class PhotosViewModel {
     }
     
     func clearCurrentPhotos() {
-        photos = nil
-        photoData = nil
+        pagedArray = nil
     }
     
 }
@@ -97,13 +95,11 @@ private extension PhotosViewModel {
     func performFlickrSearch(searchTerm: String, page: Int, completion: @escaping (Bool) -> Void) {
         isLoading = true
         flickrAPIManager.searchPhotos(page: page, searchTerm: searchTerm) { photosResult, error in
-            if let photos = photosResult {
-                self.photos = photos
-                if page > 1, let safePhotoData = photos.photo {
-                    self.photoData?.append(contentsOf: safePhotoData)
-                } else {
-                    self.photoData = photos.photo
+            if let safePhotosResult = photosResult, let photos = safePhotosResult.photo {
+                if self.pagedArray == nil {
+                    self.pagedArray = PagedArray.init(totalCount: Int(safePhotosResult.total)!, pageSize: safePhotosResult.perpage, pages: safePhotosResult.pages)
                 }
+                self.pagedArray?.addElements(photos, pageIndex: safePhotosResult.page)
                 completion(true)
             } else {
                 completion(false)
@@ -113,9 +109,8 @@ private extension PhotosViewModel {
     }
     
     func fetchNextPage(searchTerm: String, completion: @escaping (Bool) -> Void) {
-        currentPage += 1
-        if let safePhotos = photos, currentPage < safePhotos.pages {
-            performFlickrSearch(searchTerm: searchTerm, page: currentPage) { success in
+        if let pagedArray = self.pagedArray, pagedArray.pages > pagedArray.currentPage {
+            performFlickrSearch(searchTerm: searchTerm, page: pagedArray.currentPage + 1) { success in
                 completion(success)
             }
         }
