@@ -1,0 +1,20 @@
+line_length: 
+  - 300 # warning
+
+identifier_name:
+  excluded:
+    - to
+    - id
+    - by
+    - of
+    - at
+    - !str on
+    - x
+    - y
+    - L
+
+disabled_rules:
+  - trailing_whitespace
+
+excluded: # paths to ignore during linting. overridden by `included`.
+  - Pods

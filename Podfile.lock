@@ -1,16 +1,20 @@
 PODS:
   - Kingfisher (4.7.0)
+  - SwiftLint (0.25.1)
 
 DEPENDENCIES:
   - Kingfisher (~> 4.0)
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Kingfisher
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Kingfisher: da6b005aa96d37698e3e4f1ccfe96a5b9bbf27d6
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 40b3dc893bb1fff285085f670d2246d435dc394f
+PODFILE CHECKSUM: c8d17f7b6b65a9475ac9e746fd80102a9a21805f
 
 COCOAPODS: 1.5.2

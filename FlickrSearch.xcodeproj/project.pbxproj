@@ -234,6 +234,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C0B017902091BCE4006E8A75 /* Build configuration list for PBXNativeTarget "FlickrSearch" */;
 			buildPhases = (
+				C0765C4920A8DC6700C45197 /* ShellScript */,
 				0037806091E62CECF01E944F /* [CP] Check Pods Manifest.lock */,
 				C0B017642091BCE4006E8A75 /* Sources */,
 				C0B017652091BCE4006E8A75 /* Frameworks */,
@@ -394,6 +395,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FlickrSearch/Pods-FlickrSearch-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C0765C4920A8DC6700C45197 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

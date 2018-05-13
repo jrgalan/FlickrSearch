@@ -4,4 +4,5 @@ use_frameworks!
 
 target 'FlickrSearch' do
   pod 'Kingfisher', '~> 4.0'
+  pod 'SwiftLint'
 end
