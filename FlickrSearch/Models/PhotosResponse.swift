@@ -24,8 +24,7 @@ extension Photos {
     var numberOPhotos: Int {
         if let photo = self.photo {
             return photo.count
-        }
-        else {
+        } else {
             return 0
         }
     }
@@ -33,8 +32,7 @@ extension Photos {
     subscript(index: Int) -> Photo? {
         if let photo = self.photo, numberOPhotos > index {
             return photo[index]
-        }
-        else {
+        } else {
             return nil
         }
     }

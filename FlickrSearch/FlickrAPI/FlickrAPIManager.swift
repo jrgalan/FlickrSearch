@@ -17,13 +17,13 @@ class FlickrAPIManager {
         case jsonError
     }
     
-    private let FlickrAPIKey = ""
+    private let flickrAPIKey = ""
     private let photosPerPage = 25
     
     func searchPhotos(page: Int, searchTerm: String, completion: @escaping (_ photos: Photos?, _ error: Error?) -> Void) {
         
         let massagedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
-        let urlString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(FlickrAPIKey)&text=\(massagedSearchTerm)&per_page=\(photosPerPage)&page=\(page)&format=json&nojsoncallback=1"
+        let urlString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(flickrAPIKey)&text=\(massagedSearchTerm)&per_page=\(photosPerPage)&page=\(page)&format=json&nojsoncallback=1"
         guard let url = URL(string: urlString) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -57,4 +57,3 @@ class FlickrAPIManager {
     }
     
 }
-

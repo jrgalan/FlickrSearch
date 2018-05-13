@@ -97,7 +97,7 @@ private extension PhotosViewModel {
         flickrAPIManager.searchPhotos(page: page, searchTerm: searchTerm) { photosResult, error in
             if let safePhotosResult = photosResult, let photos = safePhotosResult.photo {
                 if self.pagedArray == nil {
-                    self.pagedArray = PagedArray.init(totalCount: Int(safePhotosResult.total)!, pageSize: safePhotosResult.perpage, pages: safePhotosResult.pages)
+                    self.pagedArray = PagedArray(totalCount: Int(safePhotosResult.total)!, pageSize: safePhotosResult.perpage, pages: safePhotosResult.pages)
                 }
                 self.pagedArray?.addElements(photos, pageIndex: safePhotosResult.page)
                 completion(true)
@@ -116,4 +116,3 @@ private extension PhotosViewModel {
         }
     }
 }
-

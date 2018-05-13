@@ -16,7 +16,7 @@ class PhotosViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         photosViewModel = PhotosViewModel(flickrAPIManager: MockFlickrAPIManager())
-        photosViewModel.performSearch(searchTerm: "Bleacher Report") { success in }
+        photosViewModel.performSearch(searchTerm: "Bleacher Report") { _ in }
     }
     
     override func tearDown() {
@@ -41,7 +41,7 @@ class PhotosViewModelTests: XCTestCase {
     }
     
     func testPerformSearch() {
-        photosViewModel.performSearch(searchTerm: "Simms & Lefkoe") { success in }
+        photosViewModel.performSearch(searchTerm: "Simms & Lefkoe") { _ in }
         let numberOfPhotos = photosViewModel.numberOfPhotos
         XCTAssertEqual(numberOfPhotos, 1, "PhotosViewModel numberOfPhotos wrong after searching")
     }

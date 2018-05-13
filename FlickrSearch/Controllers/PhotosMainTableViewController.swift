@@ -104,7 +104,7 @@ class PhotosMainTableViewController: UITableViewController {
         case .displayingResults:
             return photoRowHeight
         default:
-            return 0;
+            return 0
         }
     }
     
@@ -209,7 +209,6 @@ private extension PhotosMainTableViewController {
         view.addSubview(indicator)
     }
     
-    
     func performSearch(searchTerm: String) {
         if searchTerm.count > 0 {
             searchController.isActive = false
@@ -245,7 +244,7 @@ private extension PhotosMainTableViewController {
         case .displayingResults:
             return photoCellPrototype
         default:
-            return recentSearchPrototype;
+            return recentSearchPrototype
         }
     }
     
@@ -256,4 +255,3 @@ private extension PhotosMainTableViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
-
