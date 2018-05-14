@@ -49,7 +49,7 @@ final class PhotosViewModel {
     }
     
     func performSearch(searchTerm: String, completion: @escaping (Bool) -> Void) {
-        if searchTerm.count > 0 {
+        if !searchTerm.isEmpty {
             clearCurrentPhotos()
             addRecentSearch(searchTerm: searchTerm)
             performFlickrSearch(searchTerm: searchTerm, page: startingPage) { success in

@@ -173,7 +173,7 @@ extension PhotosMainTableViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        if let safeSearchTerm = searchTerm, safeSearchTerm.count > 0 {
+        if let safeSearchTerm = searchTerm, !safeSearchTerm.isEmpty {
             searchBar.text = searchTerm
         }
     }
@@ -210,7 +210,7 @@ private extension PhotosMainTableViewController {
     }
     
     func performSearch(searchTerm: String) {
-        if searchTerm.count > 0 {
+        if !searchTerm.isEmpty {
             searchController.isActive = false
             photosDisplayState = .loading
             photosViewModel.performSearch(searchTerm: searchTerm) { success in

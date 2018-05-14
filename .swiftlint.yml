@@ -16,5 +16,12 @@ identifier_name:
 disabled_rules:
   - trailing_whitespace
 
+opt_in_rules: # some rules are only opt-in
+  - control_statement
+  - empty_count
+  - trailing_newline
+  - colon
+  - comma
+
 excluded: # paths to ignore during linting. overridden by `included`.
   - Pods
