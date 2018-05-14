@@ -62,13 +62,13 @@ class MockFlickrAPIManager: FlickrAPIManager {
         }
         """.data(using: .utf8)!
     
-    override func searchPhotos(page: Int, searchTerm: String, completion: @escaping (Photos?, Error?) -> Void) {
+    override func searchPhotos(page: Int, searchTerm: String, completion: @escaping (Result<Photos>) -> Void) {
         do {
             let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: photoResponseJSON)
             if let photos = photosResponse.photos {
-                completion(photos, nil)
+                completion(.success(photos))
             } else {
-                completion(nil, FlickrAPIError.noPhotos)
+                completion(.failure(FlickrAPIError.noPhotos))
             }
         } catch let jsonError {
             XCTFail("Decoding error: \(jsonError.localizedDescription)")

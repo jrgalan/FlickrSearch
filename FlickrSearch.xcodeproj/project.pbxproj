@@ -11,6 +11,7 @@
 		C06F127120A78C490058793C /* PagedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06F127020A78C490058793C /* PagedArray.swift */; };
 		C0765C4620A8D1AD00C45197 /* PhotosViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0765C4520A8D1AD00C45197 /* PhotosViewModelTests.swift */; };
 		C0765C4820A8D51300C45197 /* PagedArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0765C4720A8D51300C45197 /* PagedArrayTests.swift */; };
+		C0765C4C20A9171500C45197 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0765C4B20A9171500C45197 /* Result.swift */; };
 		C0B0176C2091BCE4006E8A75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B0176B2091BCE4006E8A75 /* AppDelegate.swift */; };
 		C0B017712091BCE4006E8A75 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0B0176F2091BCE4006E8A75 /* Main.storyboard */; };
 		C0B017732091BCE4006E8A75 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B017722091BCE4006E8A75 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		C06F127020A78C490058793C /* PagedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedArray.swift; sourceTree = "<group>"; };
 		C0765C4520A8D1AD00C45197 /* PhotosViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewModelTests.swift; sourceTree = "<group>"; };
 		C0765C4720A8D51300C45197 /* PagedArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagedArrayTests.swift; sourceTree = "<group>"; };
+		C0765C4B20A9171500C45197 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		C0B017682091BCE4006E8A75 /* FlickrSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B0176B2091BCE4006E8A75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0B017702091BCE4006E8A75 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C0765C4A20A916FB00C45197 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C0765C4B20A9171500C45197 /* Result.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		C0B0175F2091BCE4006E8A75 = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +143,7 @@
 		C0B0176A2091BCE4006E8A75 /* FlickrSearch */ = {
 			isa = PBXGroup;
 			children = (
+				C0765C4A20A916FB00C45197 /* Utilities */,
 				C0B017A920937EF5006E8A75 /* Extensions */,
 				C0B017A120925ACD006E8A75 /* Views */,
 				C0B0179E2091BE82006E8A75 /* Controllers */,
@@ -426,6 +437,7 @@
 				C0B0179D2091BE0D006E8A75 /* PhotosResponse.swift in Sources */,
 				C0B017A02091BEA7006E8A75 /* PhotosMainTableViewController.swift in Sources */,
 				C0B017A620926FC2006E8A75 /* FlickrAPIManager.swift in Sources */,
+				C0765C4C20A9171500C45197 /* Result.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

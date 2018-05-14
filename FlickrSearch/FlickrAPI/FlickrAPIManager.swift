@@ -17,19 +17,18 @@ class FlickrAPIManager {
         case jsonError
     }
     
-    private let flickrAPIKey = ""
+    private let kFlickrAPIKey = ""
     private let photosPerPage = 25
     
-    func searchPhotos(page: Int, searchTerm: String, completion: @escaping (_ photos: Photos?, _ error: Error?) -> Void) {
-        
+    func searchPhotos(page: Int, searchTerm: String, completion: @escaping (Result<Photos>) -> Void) {
         let massagedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
-        let urlString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(flickrAPIKey)&text=\(massagedSearchTerm)&per_page=\(photosPerPage)&page=\(page)&format=json&nojsoncallback=1"
+        let urlString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(kFlickrAPIKey)&text=\(massagedSearchTerm)&per_page=\(photosPerPage)&page=\(page)&format=json&nojsoncallback=1"
         guard let url = URL(string: urlString) else {return}
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
             guard let data = data, error == nil else {
-                completion(nil, FlickrAPIError.noData)
+                completion(.failure(FlickrAPIError.noData))
                 return
             }
             
@@ -39,21 +38,20 @@ class FlickrAPIManager {
                     do {
                         let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: data)
                         if let photos = photosResponse.photos {
-                            completion(photos, nil)
+                            completion(.success(photos))
                         } else {
-                            completion(nil, FlickrAPIError.noPhotos)
+                            completion(.failure(FlickrAPIError.noPhotos))
                         }
                     } catch {
-                        completion(nil, FlickrAPIError.jsonError)
+                        completion(.failure(FlickrAPIError.jsonError))
                     }
                 default:
-                    completion(nil, FlickrAPIError.failed)
+                    completion(.failure(FlickrAPIError.failed))
                 }
             } else {
-                completion(nil, FlickrAPIError.failed)
+                completion(.failure(FlickrAPIError.failed))
             }
-            
-            }.resume()
+        }.resume()
     }
     
 }
