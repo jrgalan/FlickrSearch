@@ -116,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				C0765C4B20A9171500C45197 /* Result.swift */,
+				C06F127020A78C490058793C /* PagedArray.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -187,7 +188,6 @@
 				C0B0179A2091BD76006E8A75 /* Photo.swift */,
 				C0765C4D20AA323400C45197 /* Photos.swift */,
 				C0B0179C2091BE0D006E8A75 /* PhotosResponse.swift */,
-				C06F127020A78C490058793C /* PagedArray.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
