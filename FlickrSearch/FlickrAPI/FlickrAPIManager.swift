@@ -23,7 +23,8 @@ class FlickrAPIManager {
     func searchPhotos(page: Int, searchTerm: String, completion: @escaping (Result<Photos>) -> Void) {
         let massagedSearchTerm = searchTerm.replacingOccurrences(of: " ", with: "+")
         let urlString = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(kFlickrAPIKey)&text=\(massagedSearchTerm)&per_page=\(photosPerPage)&page=\(page)&format=json&nojsoncallback=1"
-        guard let url = URL(string: urlString) else {return}
+        
+        guard let url = URL(string: urlString) else { return }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             

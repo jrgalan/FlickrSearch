@@ -46,6 +46,12 @@ class PhotosViewModelTests: XCTestCase {
         XCTAssertEqual(numberOfPhotos, 1, "PhotosViewModel numberOfPhotos wrong after searching")
     }
     
+    func testLikedPhoto() {
+        photosViewModel.likedPhoto(index: 0)
+        let photo = photosViewModel.photo(for: 0)
+        XCTAssert(photo?.isLiked == true, "PhotosViewModel photo not liked correctly")
+    }
+    
 }
 
 class MockFlickrAPIManager: FlickrAPIManager {

@@ -31,10 +31,12 @@ struct PagedArray<T> {
     }
     
     subscript(index: Index) -> T? {
-        if elements.count > index {
-            return elements[index]
-        } else {
-            return nil
+        get {
+            return elements.count > index ? elements[index] : nil
+        }
+        set {
+            guard let newValue = newValue else { return }
+            elements[index] = newValue
         }
     }
 

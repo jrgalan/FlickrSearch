@@ -39,6 +39,13 @@ final class PhotosViewModel {
         return pagedArray?[index]
     }
     
+    func likedPhoto(index: Int) {
+        if var photo = pagedArray?[index] {
+            photo.liked()
+            pagedArray?[index] = photo
+        }
+    }
+    
     func recentSearchTerm(for index: Int) -> String? {
         let recentSearchStrings = recentSearches
         if index < recentSearchStrings.count {

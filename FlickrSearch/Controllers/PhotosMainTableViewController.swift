@@ -27,17 +27,13 @@ class PhotosMainTableViewController: UITableViewController {
     private var photosDisplayState: PhotosDisplayState = .displayingRecentSearch {
         didSet {
             switch photosDisplayState {
-            case .displayingRecentSearch:
+            case .displayingRecentSearch, .displayingResults:
                 DispatchQueue.main.async { [weak self] in
                     self?.indicator.stopAnimating()
                 }
             case .loading:
                 DispatchQueue.main.async { [weak self] in
                     self?.indicator.startAnimating()
-                }
-            case .displayingResults:
-                DispatchQueue.main.async { [weak self] in
-                    self?.indicator.stopAnimating()
                 }
             }
             DispatchQueue.main.async { [weak self] in
@@ -50,7 +46,6 @@ class PhotosMainTableViewController: UITableViewController {
     private let photosViewModel = PhotosViewModel(flickrAPIManager: FlickrAPIManager())
     
     private var searchTerm: String?
-    
     private var indicator = UIActivityIndicatorView()
     
     // MARK: - Controller view setup
@@ -81,7 +76,7 @@ class PhotosMainTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: prototype, for: indexPath)
         
         if let photoCell = cell as? PhotoTableViewCell, let photo = photosViewModel.photo(for: indexPath.row) {
-            photoCell.setupCell(title: photo.title, thumbnailURL: photo.photoThumbnailURL)
+            photoCell.setupCell(title: photo.title, thumbnailURL: photo.photoThumbnailURL, isLiked: photo.isLiked)
         } else {
             cell.textLabel?.text = photosViewModel.recentSearchTerm(for: indexPath.row)
         }
@@ -113,7 +108,8 @@ class PhotosMainTableViewController: UITableViewController {
         case .displayingRecentSearch:
             performRecentSearch(index: indexPath.row)
         case .displayingResults:
-            break
+            photosViewModel.likedPhoto(index: indexPath.row)
+            tableView.reloadRows(at: [indexPath], with: .none)
         default:
             break
         }

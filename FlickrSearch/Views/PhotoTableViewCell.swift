@@ -13,6 +13,7 @@ class PhotoTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photoTitleLabel: UILabel!
     @IBOutlet weak var photoThumbnailImageView: UIImageView!
+    @IBOutlet weak var likedLabel: UILabel!
     
     private let placeholder = UIImage(named: "placeholder")
     private let processor = RoundCornerImageProcessor(cornerRadius: 8)
@@ -25,10 +26,11 @@ class PhotoTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupCell(title: String, thumbnailURL: String) {
+    func setupCell(title: String, thumbnailURL: String, isLiked: Bool) {
         let url = URL(string: thumbnailURL)
         photoTitleLabel.text = title
-        photoThumbnailImageView?.kf.setImage(with: url, placeholder: placeholder, options: [.processor(processor), .transition(.fade(0.2))], progressBlock: nil, completionHandler: nil)
+        photoThumbnailImageView.kf.setImage(with: url, placeholder: placeholder, options: [.processor(processor), .transition(.fade(0.2))], progressBlock: nil, completionHandler: nil)
+        likedLabel.text = isLiked ? "💜" : ""
     }
 
 }
