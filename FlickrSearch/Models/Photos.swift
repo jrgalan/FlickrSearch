@@ -24,11 +24,4 @@ extension Photos {
         }
     }
     
-    subscript(index: Int) -> Photo? {
-        if let photo = self.photo, numberOPhotos > index {
-            return photo[index]
-        } else {
-            return nil
-        }
-    }
 }
