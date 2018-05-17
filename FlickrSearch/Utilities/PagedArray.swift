@@ -31,18 +31,18 @@ struct PagedArray<T> {
     }
     
     subscript(index: Index) -> T? {
-        get {
-            return elements.count > index ? elements[index] : nil
-        }
-        set {
-            guard let newValue = newValue else { return }
-            elements[index] = newValue
-        }
+        return elements.count > index ? elements[index] : nil
     }
 
     mutating func addElements(_ elements: [T], pageIndex: PageIndex) {
         currentPage = pageIndex
         self.elements.append(contentsOf: elements)
+    }
+    
+    mutating func updateElement(_ element: T, index: Index) {
+        if elements.count > index {
+            self.elements[index] = element
+        }
     }
     
 }

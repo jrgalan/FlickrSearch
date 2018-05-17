@@ -42,7 +42,7 @@ final class PhotosViewModel {
     func likedPhoto(index: Int) {
         if var photo = pagedArray?[index] {
             photo.liked()
-            pagedArray?[index] = photo
+            pagedArray?.updateElement(photo, index: index)
         }
     }
     

@@ -16,6 +16,7 @@ class PagedArrayTests: XCTestCase {
     override func setUp() {
         super.setUp()
         pagedArray = PagedArray(totalCount: 2, pageSize: 1, pages: 2)
+        pagedArray.addElements([1], pageIndex: 1)
     }
     
     override func tearDown() {
@@ -36,18 +37,28 @@ class PagedArrayTests: XCTestCase {
     }
     
     func testCurrentPage() {
-        pagedArray?.addElements([1], pageIndex: 1)
         XCTAssertEqual(pagedArray.currentPage, 1, "PagedArray currentPage wrong")
     }
     
     func testAddElements() {
-        pagedArray?.addElements([1], pageIndex: 1)
         XCTAssertEqual(pagedArray.count, 1, "PagedArray count wrong")
     }
     
     func testIndexElement() {
-        pagedArray?.addElements([1], pageIndex: 1)
-        XCTAssertEqual(pagedArray[0], 1, "PagedArray count wrong")
+        if let element = pagedArray[0] {
+            XCTAssertEqual(element, 1, "PagedArray element wrong")
+        } else {
+            XCTFail("element nil")
+        }
+    }
+    
+    func testUpdateElement() {
+        pagedArray.updateElement(2, index: 0)
+        if let element = pagedArray[0] {
+            XCTAssertEqual(element, 2, "PagedArray updated element wrong")
+        } else {
+            XCTFail("element nil")
+        }
     }
     
 }
